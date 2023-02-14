@@ -1,0 +1,16 @@
+.profile__add-button {
+	padding: 0;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 150px;
+	height: 50px;
+	border: 0;
+	background: none;
+	transform: translateY(+2px);
+	transition: all 0.3s;
+}
+.profile__add-button:hover{
+	opacity: 0.6;
+	scale: 1.1;
+}
