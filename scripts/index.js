@@ -7,7 +7,7 @@ console.log(likeButton);
 
 function popupOpened(){
 	popup.classList.add('popup_opened');
-	let profileName = document.querySelector('.profile__name'); // эти переменные тоже нужно вынести наверх? на мой взгляд они нам не нужны до открытия окна
+	let profileName = document.querySelector('.profile__name'); // эти переменные тоже нужно вынести наверх? на мой взгляд, они нам не нужны до открытия окна
 	let profileProfession = document.querySelector('.profile__profession');
 	let popupButtonSave = document.querySelector('.popup__button');
 	let nameInput = document.querySelector('.popup__text_type_name');
