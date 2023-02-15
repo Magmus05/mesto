@@ -9,5 +9,7 @@
 	.profile__info {
 		align-items: center;
 		margin-right: 0;
+		gap: 14px;
+		margin-bottom: 36px;
 	}
 }

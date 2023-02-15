@@ -1,6 +1,8 @@
 .profile__avatar-image{
-	width: 120px;
 	transition: transform 0.5s ease-in;
+	object-fit: cover;
+	width: 120px;
+	height: 120px;
 }
 .profile__avatar:hover .profile__avatar-image{
 	transform: scale(1.2);

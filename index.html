@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="./page/index.css">
+	<link rel="stylesheet" type="text/css" href="./pages/index.css">
 	<title lang="En">mesto</title>
 </head>
 <body class="page">
@@ -18,90 +18,90 @@
 			<div class="profile__info">
 				<div class="profile__user-data">
 					<h1 class="profile__name overflow-text">Жак-Ив Кусто</h1>
-					<button class="profile__edit-button">
+					<button class="profile__edit-button" type="button">
 						<span class="sr-only">Редактировать</span>
-						<img src="images/Edit-Button.svg" alt="Кнопка редактировать.">
 					</button>
 				</div>
 				<p class="profile__profession overflow-text">Исследователь океана</p>
 			</div>
-			<button class="profile__add-button">
+			<button class="profile__add-button" type="button">
 				<span class="sr-only">Добавить</span>
-				<img src="images/Add-Button.svg" alt="Кнопка Добавить.">
 			</button>
 		</section>
 
-		<section class="elements container">
-			<div class="element">
+		<section class="elements container" aria-label="Карточки с местами">
+			<article class="element">
 				<img src="images/karachaevsk.jpg" alt="Картинка старой постройки." class="element__image">
 				<div class="element__info">
 					<h2 class="element__title overflow-text">Карачаевск</h2>
-					<button class="element__like-button">
+					<button class="element__like-button" type="button">
 						<span class="sr-only">лайк</span>
 					</button>
 				</div>
-			</div>
-			<div class="element">
-				<img src="images/Elbrus.jpg" alt="Картинка горы Эльбрус." class="element__image">
+			</article>
+			<article class="element">
+				<img src="images//Elbrus.jpg" alt="Картинка горы Эльбрус." class="element__image">
 				<div class="element__info">
-					<h2 class="element__title overflow-text">"Гора Эльбрус"</h2>
-					<button class="element__like-button">
+					<h2 class="element__title overflow-text">Гора Эльбрус</h2>
+					<button class="element__like-button" type="button">
 						<span class="sr-only">лайк</span>
 					</button>
 				</div>
-			</div>
-			<div class="element">
+			</article>
+			<article class="element">
 				<img src="images/dombay.jpg" alt="Картинка горы Домбай." class="element__image">
 				<div class="element__info">
 					<h2 class="element__title overflow-text">Домбай</h2>
-					<button class="element__like-button">
+					<button class="element__like-button" type="button">
 						<span class="sr-only">лайк</span>
 					</button>
 				</div>
-			</div>
-			<div class="element">
+			</article>
+			<article class="element">
 				<img src="images/naryn-kala.jpeg" alt="Картинка крепости Нарын-Кала." class="element__image">
 				<div class="element__info">
 					<h2 class="element__title overflow-text">Крепость Нарын-Кала</h2>
-					<button class="element__like-button">
+					<button class="element__like-button" type="button">
 						<span class="sr-only">лайк</span>
 					</button>
 				</div>
-			</div>
-			<div class="element">
+			</article>
+			<article class="element">
 				<img src="images/sulak.jpg" alt="Картинка Сулакского каньона." class="element__image">
 				<div class="element__info">
 					<h2 class="element__title overflow-text">Сулакский каньон</h2>
-					<button class="element__like-button">
+					<button class="element__like-button" type="button">
 						<span class="sr-only">лайк</span>
 					</button>
 				</div>
-			</div>
-			<div class="element">
+			</article>
+			<article class="element">
 				<img src="images/shalbuzdag.jpg" alt="Картинка горы Шалбуздаг." class="element__image">
 				<div class="element__info">
 					<h2 class="element__title overflow-text">Гора Шалбуздаг</h2>
-					<button class="element__like-button">
+					<button class="element__like-button" type="button">
 						<span class="sr-only">лайк</span>
 					</button>
 				</div>
-			</div>
+			</article>
 		</section>
 	</main>
 	<footer class="footer container">
 		<p class="footer__text">&#169; 2023 Mesto Russia</p>
 	</footer>
-	<section class="popup">
-		 <div class="popup__body">
-			<form  class="popup__container" onsubmit="return false">
-				<img class="popup__close" src="images/Close-Icon.svg" alt="">
+	<div class="popup">
+		 <div class="popup__container">
+				<button class="popup__close" type="button">
+					<span class="sr-only">Закрыть</span>
+				</button>
 				<h2 class="popup__title">Редактировать профиль</h2>
-				<input class="popup__text popup__name-Input" type="text">
-				<input class="popup__text popup__job-Input" type="text">
-				<button class="popup__button">Сохранить</button>
+				<form class="popup__form" name="editProfile">
+				<input class="popup__text popup__text_type_name" type="text" placeholder="Имя" name="name">
+				<input class="popup__text popup__text_type_profession" type="text"placeholder="Профессия" name="profession">
+				<button class="popup__button" type="button">Сохранить</button>
 			</form>
 		</div>
-	</section>
+	</div>
 	<script src="./scripts/index.js"></script>
 </body>
 </html>

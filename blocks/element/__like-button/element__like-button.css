@@ -3,14 +3,11 @@
 	width: 22px;
 	height: 19px;
 	border: 0;
-	background: url(../../../../images/like.svg) no-repeat;
+	background: url(../../../images/like.svg) no-repeat;
 	transform: translateY(+2px);
 	transition: all 0.3s;
 }
 .element__like-button:hover{
-	opacity: 0.6;
+	opacity: 0.5;
 	scale: 1.2;
-}
-.element__like-button:focus{
-	background: url(../../../../images/like-active.svg) no-repeat;
 }

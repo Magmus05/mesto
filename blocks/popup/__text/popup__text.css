@@ -6,7 +6,10 @@
 	height: 27px;
 	padding: 6px 0 13px;
 	outline: none;
+	font-size: 14px;
+	line-height: 17px;
 }
+
 .popup__text:focus{
 	border: 2px solid #38c1d6;
 }
