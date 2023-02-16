@@ -3,13 +3,13 @@
 	margin-right: auto;
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: 8px;
 }
 @media screen and (max-width: 700px){
 	.profile__info {
 		align-items: center;
 		margin-right: 0;
-		gap: 14px;
-		margin-bottom: 36px;
+		gap: 8px;
+		margin-bottom: 32px;
 	}
 }
