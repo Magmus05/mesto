@@ -134,7 +134,7 @@ likeCardButton.forEach(function(evt){
 
 // попап с картинкой
 function clickedImage(event){
-	const popupOpenImage = document.querySelector('.popup_type_foto');
+	const popupOpenImage = document.querySelector('.popup-foto_type_foto');
 	popupOpenImage.classList.add('popup_opened');
 	const popupImage = document.querySelector('.popup-foto__image')
 	popupImage.setAttribute('src', event.target.getAttribute('src')) ;
