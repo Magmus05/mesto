@@ -70,7 +70,6 @@ document.querySelectorAll('.popup-close-button').forEach(button => {
   const buttonsPopup = button.closest('.close-popup'); // нашли родителя с нужным классом
   button.addEventListener('click', () => closePopup(buttonsPopup)); // закрыли попап
 });  
-
 function openPopup(popup){
 	popup.classList.add('popup_opened');
 }
