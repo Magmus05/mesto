@@ -19,7 +19,7 @@ const popupOpenImage = document.querySelector('.popup-foto_type_foto');
 const nameImagePopupFoto = document.querySelector('.popup-foto__image-name');
 const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.cardTemplate').content.querySelector('.element');
-
+// функция создания карточки
 function createCard(link, name) {
 	const newCard = cardTemplate.cloneNode(true);
 	const cardImage = newCard.querySelector('.element__image');
@@ -62,10 +62,9 @@ function handleFormCreateSubmit (evt) {
 function openPopupCreateCard(){ 
 	openPopup(popupCreateCard);
 }
-
 formElementCreate.addEventListener('submit', handleFormCreateSubmit);
 createButton.addEventListener('click', openPopupCreateCard);
-
+// Кнопка закрытия пупапов
 document.querySelectorAll('.popup-close-button').forEach(button => {
   const buttonsPopup = button.closest('.close-popup'); // нашли родителя с нужным классом
   button.addEventListener('click', () => closePopup(buttonsPopup)); // закрыли попап
