@@ -19,6 +19,15 @@ const popupOpenImage = document.querySelector('.popup-foto_type_foto');
 const nameImagePopupFoto = document.querySelector('.popup-foto__image-name');
 const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.cardTemplate').content.querySelector('.element');
+const config = {
+	formElement: '',
+	inputSelector: '.popup__text',
+	submitButtonSelector: '.popup__button',
+	inactiveButtonClass: 'popup__button_disabled',
+	inputErrorClass: '.popup__span_type_',
+	errorClass: 'popup__text_error'
+}
+
 // функция создания карточки
 function createCard(link, name) {
 	const newCard = cardTemplate.cloneNode(true);
@@ -61,14 +70,26 @@ function handleFormCreateSubmit (evt) {
 
 function openPopupCreateCard(){ 
 	openPopup(popupCreateCard);
+	config.formElement = popupCreateCard.querySelector('.popup__form')
+	enableValidation(config); 
 }
 formElementCreate.addEventListener('submit', handleFormCreateSubmit);
-createButton.addEventListener('click', openPopupCreateCard);
+createButton.addEventListener('click', openPopupCreateCard);  //Нажатие кнопки СОЗДАТЬ
 // Кнопка закрытия пупапов
 document.querySelectorAll('.popup-close-button').forEach(button => {
   const buttonsPopup = button.closest('.close-popup'); // нашли родителя с нужным классом
   button.addEventListener('click', () => closePopup(buttonsPopup)); // закрыли попап
 });  
+// закрытие пупапов overlay
+document.querySelectorAll('.popup-overlay').forEach(el =>{
+	el.addEventListener('mousedown', (evt) => {
+		if(el === evt.target) closePopup(el)
+	})
+	document.addEventListener('keydown', (evt) => {
+		if(evt.key === 'Escape') closePopup(el)
+	})
+})
+
 function openPopup(popup){
 	popup.classList.add('popup_opened');
 }
@@ -81,6 +102,8 @@ function openPopupdEditProfile(){
 	openPopup (popupEditProfile)
 	nameInput.value = profileName.textContent;
 	jobInput.value = profileProfession.textContent;
+	config.formElement = popupEditProfile.querySelector('.popup__form')
+	enableValidation(config); 
 }
 function closePopupEditProfile(){
 	closePopup (popupEditProfile);
@@ -92,4 +115,4 @@ function handleFormEditSubmit(evt) {
 	closePopupEditProfile();
 }
 formEditProfile.addEventListener('submit', handleFormEditSubmit);
-editButton.addEventListener('click', openPopupdEditProfile);
+editButton.addEventListener('click', openPopupdEditProfile); //Нажатие кнопки РЕДАКТИРОВАТЬ
