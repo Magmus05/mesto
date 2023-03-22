@@ -18,6 +18,7 @@ function disableButton(submitButton, inactiveButtonClass){
 function hasInvalidInput(inputList){
 return inputList.some(input => !input.validity.valid);
 }
+
 function toggleButtonState(submitButton, inactiveButtonClass, inputList){
 	if(!hasInvalidInput(inputList)){
 		enableButton(submitButton, inactiveButtonClass);
@@ -35,24 +36,38 @@ function checkInputValidity(inputElement, inputErrorClass, errorClass){
 	}
 }
 
-function setEventListeners(inputList, submitButton, config){
-	config.formElement.addEventListener('submit', evt => {
-		evt.preventDefault();
+function setEventListeners(formList, config){
+	formList.forEach(formElement => {
+		formElement.addEventListener('submit', evt => {
+			evt.preventDefault();
+			disableButton(evt.submitter, config.inactiveButtonClass);
+		})
 	})
 
-	inputList.forEach(inputElement => {
-		inputElement.addEventListener('input', () =>{
-			checkInputValidity(inputElement, config.inputErrorClass, config.errorClass);
+	formList.forEach(formElement => {
+		formElement.addEventListener('input', (evt) =>{
+			inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+			const submitButton = formElement.querySelector(config.submitButtonSelector);
+			checkInputValidity(evt.target, config.inputErrorClass, config.errorClass);
 			toggleButtonState(submitButton, config.inactiveButtonClass, inputList);
 		})
 	})
 }
 
 function enableValidation(config){
-	const inputList = Array.from(config.formElement.querySelectorAll(config.inputSelector));
-	const submitButton = config.formElement.querySelector(config.submitButtonSelector);
-	submitButton.classList.add(config.inactiveButtonClass);
-	submitButton.disabled = true;
-	setEventListeners(inputList, submitButton, config);
+	const formList = Array.from(document.querySelectorAll(config.formElement));
+	const buttonList = Array.from(document.querySelectorAll(config.submitButtonSelector));
+	buttonList.forEach(el=>{
+		disableButton(el, config.inactiveButtonClass)
+	})
+	setEventListeners(formList, config);
 }
 
+enableValidation({
+	formElement: '.popup__form',
+	inputSelector: '.popup__text',
+	submitButtonSelector: '.popup__button',
+	inactiveButtonClass: 'popup__button_disabled',
+	inputErrorClass: '.popup__span_type_',
+	errorClass: 'popup__text_error'
+})
