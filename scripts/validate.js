@@ -41,7 +41,7 @@ function setEventListeners(formElement, config){
 	const submitButton = formElement.querySelector(config.submitButtonSelector);
 	toggleButtonState(submitButton, config.inactiveButtonClass, inputList);
 		formElement.addEventListener('input', (evt)=>{
-			currentInputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+			currentInputList = Array.from(formElement.querySelectorAll(config.inputSelector)); // в теории одна форма, а как тут обойтись без поиска инпутЛистов из открытой формы, если у нас две формы ?
 			checkInputValidity(evt.target, config.inputErrorClass, config.errorClass);
 			toggleButtonState(submitButton, config.inactiveButtonClass, currentInputList)
 		})
