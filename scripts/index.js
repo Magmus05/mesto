@@ -57,7 +57,6 @@ function handleFormCreateSubmit (evt) {
 	const cardfromCreate = createCard(cardLink.value, cardName.value)
 	cardsContainer.prepend(cardfromCreate);
 	closePopup(popupCreateCard);
-	console.log(evt);
 	evt.target.reset();   // деактивировать кнопку!!!!!!!!!!!!!!!!!!!!!
 }
 

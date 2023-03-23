@@ -37,15 +37,15 @@ function checkInputValidity(inputElement, inputErrorClass, errorClass){
 }
 
 function setEventListeners(formElement, config){
-	inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+	const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
 	const submitButton = formElement.querySelector(config.submitButtonSelector);
-	toggleButtonState(submitButton, config.inactiveButtonClass, inputList);
-		formElement.addEventListener('input', (evt)=>{
-			const currentInputList = Array.from(formElement.elements).slice(0, 2); // в теории одна форма, а как тут обойтись без поиска инпутЛистов из открытой формы, если у нас две формы ?
-			checkInputValidity(evt.target, config.inputErrorClass, config.errorClass);
-			toggleButtonState(submitButton, config.inactiveButtonClass, currentInputList)
+	toggleButtonState(submitButton, config.inactiveButtonClass, inputList)
+	inputList.forEach(inputElement =>{
+		inputElement.addEventListener('input', ()=>{
+			checkInputValidity(inputElement, config.inputErrorClass, config.errorClass);
+			toggleButtonState(submitButton, config.inactiveButtonClass, inputList)
 		})
-
+	})
 }
 
 function enableValidation(config){
