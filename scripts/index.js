@@ -1,5 +1,5 @@
-import {Cards} from './cards.js';
-import {FormValidator} from './validate.js';
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 const editButton = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_type_editProfile');
 const formEditProfile = document.forms['editProfile'];
@@ -17,6 +17,17 @@ const popupOpenImage = document.querySelector('.popup-foto_type_foto');
 const nameImagePopupFoto = document.querySelector('.popup-foto__image-name');
 const popups = document.querySelectorAll('.popup');
 const cardsContainer = document.querySelector('.elements');
+const data = {
+	submitButtonSelector: '.popup__button',
+	inactiveButtonClass: 'popup__button_disabled',
+	inputErrorClass: '.popup__span_type_',
+	errorClass: 'popup__text_error',
+	inputSelector: '.popup__text'
+}
+const formEditProfileValidation = new FormValidator (data, formEditProfile);
+formEditProfileValidation.enableValidation();
+const formElementCreateValidation= new FormValidator (data, formElementCreate);
+formElementCreateValidation.enableValidation();
 const initialCards = [
   {
     name: 'Архыз',
@@ -50,17 +61,21 @@ function openClickedPicture(name, link){
 	popupImage.setAttribute('alt', `Фотография: ${name}.`);
 	nameImagePopupFoto.textContent = name;
 }
-initialCards.forEach(card => {
-	const cardFromArray = new Cards(card.link, card.name, '.cardTemplate');
+function createCard (link, name, Template, openClickedPicture) {
+	const cardFromArray = new Card(link, name, Template, openClickedPicture);
 	cardsContainer.prepend(cardFromArray.createCard());
+}
+initialCards.forEach(card => {
+	createCard(card.link, card.name, '.cardTemplate', openClickedPicture)
 })
 
 function handleFormCreateSubmit (evt) {
 	evt.preventDefault();
-	const cardfromCreate = new Cards(cardLink.value, cardName.value, '.cardTemplate')
+	const cardfromCreate = new Card(cardLink.value, cardName.value, '.cardTemplate', openClickedPicture)
 	cardsContainer.prepend(cardfromCreate.createCard());
 	closePopup(popupCreateCard);
-	evt.target.reset();   // деактивировать кнопку
+	evt.target.reset();
+	formElementCreateValidation.disableButton();   // деактивировать кнопку
 }
 
 function openPopupCreateCard(){ 
@@ -111,17 +126,7 @@ function handleFormEditSubmit(evt) {
 	profileName.textContent = nameInput.value;
 	profileProfession.textContent = jobInput.value;
 	closePopupEditProfile();
+	formEditProfileValidation.disableButton();
 }
 formEditProfile.addEventListener('submit', handleFormEditSubmit);
 editButton.addEventListener('click', openPopupdEditProfile); //Нажатие кнопки РЕДАКТИРОВАТЬ
-
-const data = {
-	formElement: '.popup__form',
-	submitButtonSelector: '.popup__button',
-	inactiveButtonClass: 'popup__button_disabled',
-	inputErrorClass: '.popup__span_type_',
-	errorClass: 'popup__text_error'
-}
-new FormValidator (data, '.popup__text').enableValidation();
-
-export {openClickedPicture}
