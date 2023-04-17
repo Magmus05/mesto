@@ -76,7 +76,6 @@ function handleFormCreateSubmit (evt) {
 	cardsContainer.prepend(cardfromCreate.createCard());
 	closePopup(popupCreateCard);
 	evt.target.reset();
-	formElementCreateValidation.disableButton();  // деактивировать кнопку
 }
 
 function openPopupCreateCard(){ 
@@ -109,6 +108,7 @@ function openPopup(popup){
 	document.addEventListener('keydown', closeByEscape); 
 }
 function closePopup(popup){
+	popupEditProfile === popup?formEditProfileValidation.disableButton():formElementCreateValidation.disableButton();
 	popup.classList.remove('popup_opened');
 	document.removeEventListener('keydown', closeByEscape); 
 }
@@ -127,7 +127,6 @@ function handleFormEditSubmit(evt) {
 	profileName.textContent = nameInput.value;
 	profileProfession.textContent = jobInput.value;
 	closePopupEditProfile();
-	formEditProfileValidation.disableButton();
 }
 formEditProfile.addEventListener('submit', handleFormEditSubmit);
 editButton.addEventListener('click', openPopupdEditProfile); //Нажатие кнопки РЕДАКТИРОВАТЬ
