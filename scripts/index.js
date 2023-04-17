@@ -76,7 +76,7 @@ function handleFormCreateSubmit (evt) {
 	cardsContainer.prepend(cardfromCreate.createCard());
 	closePopup(popupCreateCard);
 	evt.target.reset();
-	formElementCreateValidation.disableButton()
+	formElementCreateValidation.disableButton();
 }
 
 function openPopupCreateCard(){ 
@@ -109,6 +109,7 @@ function openPopup(popup){
 	document.addEventListener('keydown', closeByEscape); 
 }
 function closePopup(popup){
+	if(popup === popupEditProfile){formEditProfileValidation.disableButton()}
 	popup.classList.remove('popup_opened');
 	document.removeEventListener('keydown', closeByEscape); 
 }
@@ -118,7 +119,6 @@ function openPopupdEditProfile(){
 	openPopup (popupEditProfile)
 	nameInput.value = profileName.textContent;
 	jobInput.value = profileProfession.textContent;
-	formEditProfileValidation.disableButton()
 }
 function closePopupEditProfile(){
 	closePopup (popupEditProfile);
