@@ -28,6 +28,7 @@ const formEditProfileValidation = new FormValidator (data, formEditProfile);
 formEditProfileValidation.enableValidation();
 const formElementCreateValidation= new FormValidator (data, formElementCreate);
 formElementCreateValidation.enableValidation();
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -75,7 +76,7 @@ function handleFormCreateSubmit (evt) {
 	cardsContainer.prepend(cardfromCreate.createCard());
 	closePopup(popupCreateCard);
 	evt.target.reset();
-	formElementCreateValidation.disableButton();   // деактивировать кнопку
+	formElementCreateValidation.disableButton();  // деактивировать кнопку
 }
 
 function openPopupCreateCard(){ 
