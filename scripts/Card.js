@@ -9,7 +9,7 @@ export class Card {
       const cardElement = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
       return cardElement;
     }
-    createCard() {
+    createNewCard() {
       this._newCard = this._getTemplate();
       this._cardImage = this._newCard.querySelector('.element__image');
       this._likeButton = this._newCard.querySelector('.element__like-button');

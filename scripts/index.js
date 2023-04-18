@@ -63,17 +63,16 @@ function openClickedPicture(name, link){
 	nameImagePopupFoto.textContent = name;
 }
 function createCard (link, name, Template, openClickedPicture) {
-	const cardFromArray = new Card(link, name, Template, openClickedPicture);
-	cardsContainer.prepend(cardFromArray.createCard());
+	const cardfromCreate = new Card(link, name, Template, openClickedPicture);
+	return cardfromCreate.createNewCard();
 }
 initialCards.forEach(card => {
-	createCard(card.link, card.name, '.cardTemplate', openClickedPicture)
+	cardsContainer.prepend(createCard(card.link, card.name, '.cardTemplate', openClickedPicture));
 })
 
 function handleFormCreateSubmit (evt) {
 	evt.preventDefault();
-	const cardfromCreate = new Card(cardLink.value, cardName.value, '.cardTemplate', openClickedPicture)
-	cardsContainer.prepend(cardfromCreate.createCard());
+	cardsContainer.prepend(createCard(cardLink.value, cardName.value, '.cardTemplate', openClickedPicture));
 	closePopup(popupCreateCard);
 	evt.target.reset();
 	formElementCreateValidation.disableButton();
@@ -109,7 +108,6 @@ function openPopup(popup){
 	document.addEventListener('keydown', closeByEscape); 
 }
 function closePopup(popup){
-	if(popup === popupEditProfile){formEditProfileValidation.disableButton()}
 	popup.classList.remove('popup_opened');
 	document.removeEventListener('keydown', closeByEscape); 
 }
@@ -119,6 +117,7 @@ function openPopupdEditProfile(){
 	openPopup (popupEditProfile)
 	nameInput.value = profileName.textContent;
 	jobInput.value = profileProfession.textContent;
+	formEditProfileValidation.disableButton();
 }
 function closePopupEditProfile(){
 	closePopup (popupEditProfile);
