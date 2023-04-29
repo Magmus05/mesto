@@ -4,11 +4,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: { main: './src/pages/index.js' },
+  entry: { main: './src/pages/index.js' }, // указали первое место, куда заглянет webpack, — файл index.js в папке src/pages/
+	mode: "production",
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'), // переписали точку выхода, используя утилиту path 
     filename: 'main.js',
-        publicPath: ''
+        publicPath: '',
   },
 	mode: 'development',// добавили режим разработчика
 	devServer: {
@@ -42,8 +43,8 @@ module.exports = {
 				// MiniCssExtractPlugin.loader и css-loader
 				use: [MiniCssExtractPlugin.loader, {
 					loader: 'css-loader',
-					options: { importLoaders: 1 }
-				}, 'postcss-loader']
+					options: { importLoaders: 1 }  // Если вы используете директиву @import в css-файлах, после подключения postcss-loader, нужно изменить то, как подключается css-loader.
+				}, 'postcss-loader'] //подключите плагин PostCSS // 
 			},
       ]
   },
@@ -51,7 +52,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './src/index.html' // путь к файлу index.html
 		}),
-		new CleanWebpackPlugin(),
+		new CleanWebpackPlugin(), //плагин, который будет каждый раз при сборке проекта удалять содержимое папки dist. 
 		new MiniCssExtractPlugin()
 	] 
 }
