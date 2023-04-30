@@ -10,6 +10,5 @@ export class PopupWithImage extends Popup{
 		this._popupImage.setAttribute('src', link);
 		this._popupImage.setAttribute('alt', `Фотография: ${name}.`);
 		this._nameImgFromPopupFoto.textContent = name;
-		super.setEventListeners();
 	}
 }
