@@ -1,10 +1,10 @@
 .element__like-button {
+	margin: 0 0 3px 0;
 	padding: 0;
 	width: 22px;
 	height: 19px;
 	border: 0;
 	background: url(../../../images/like.svg) no-repeat;
-	transform: translateY(6px) translateX(-4px);
 	transition: all 0.3s;
 	cursor: pointer;
 }
