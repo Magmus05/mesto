@@ -66,7 +66,7 @@ export class Api {
 		.catch((err)=> console.log(err))
 	}
 	deleteMyCard(cardId){
-		fetch(`https://mesto.nomoreparties.co/v1/cohort-65/cards/${cardId}`, {
+		return fetch(`https://mesto.nomoreparties.co/v1/cohort-65/cards/${cardId}`, {
 			method: 'DELETE',
 			headers: {
 				authorization: '01c577aa-8668-46fe-928c-79fc4aa9c83a',
