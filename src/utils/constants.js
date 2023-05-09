@@ -1,17 +1,17 @@
 export const editButton = document.querySelector('.profile__edit-button');
 export const popupEditProfile = document.querySelector('.popup_type_editProfile');
 export const formEditProfile = document.forms['editProfile'];
-export const profileName = document.querySelector('.profile__name');
-export const profileProfession = document.querySelector('.profile__profession');
-export const profileAvatar = document.querySelector('.profile__avatar-image');
+//export const profileName = document.querySelector('.profile__name');
+//export const profileProfession = document.querySelector('.profile__profession');
+// export const profileAvatar = document.querySelector('.profile__avatar-image');
 export const editButtonProfileAvatar = document.querySelector('.profile__avatar-editImage');
-export const nameInput = popupEditProfile.querySelector('.popup__text_type_name');
-export const jobInput = popupEditProfile.querySelector('.popup__text_type_profession');
+//export const nameInput = popupEditProfile.querySelector('.popup__text_type_name');
+//export const jobInput = popupEditProfile.querySelector('.popup__text_type_profession');
 export const createButton = document.querySelector('.profile__add-button');
 export const popupCreateCard = document.querySelector('.popup_type_createCard');
 export const formElementCreate = document.forms['createProfile'];
 export const formElementAvatar = document.forms['newAvatar'];
-export const deleteCardButton = document.forms['deleteCard'];
+//export const deleteCardButton = document.forms['deleteCard'];
 export const popupImage = document.querySelector('.popup-foto__image');
 export const popupOpenImage = document.querySelector('.popup-foto_type_foto');
 export const popups = document.querySelectorAll('.popup');
@@ -23,7 +23,13 @@ export const data = {
 	errorClass: 'popup__text_error',
 	inputSelector: '.popup__text'
 }
-
+export const optionsFromApi = {
+	baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65/',
+	headers: {
+		authorization: '01c577aa-8668-46fe-928c-79fc4aa9c83a',
+		'Content-Type': 'application/json'
+	}
+}
 
 
 
