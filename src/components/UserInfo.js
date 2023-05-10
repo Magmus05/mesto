@@ -17,10 +17,10 @@ export class UserInfo {
 	setUserInfo(newProfile){
 		this._profileName.textContent = newProfile.name;
 		this._profileProfession.textContent = newProfile.about;
-		this.id = newProfile.id
+		this.id = newProfile._id;
 		this._avatar.src = newProfile.avatar;
 	}
 	getUserID(){
-		return '70b70b8feea62dd20261e71b' // если вернуть this.id то он не успевает попасть в задекларированные функции и тогда id не доступен ни кому.
+		return this.id;
 	}
 }

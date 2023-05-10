@@ -19,19 +19,17 @@ const api = new Api(optionsFromApi);
 
 
 // Лайки карточек
-function putLikeCard(cardId, likeElement, likeButton){
+function putLikeCard(cardId, card){
 	api.putLikeCard(cardId)
 	.then(result=> {
-		likeElement.textContent = result.likes.length;
-		likeButton.classList.toggle('element__like-button_active');
+		card.putLike(result.likes.length)
 	})
 	.catch((err)=> console.log(`Ошибка ${err}`)) 
 }
-function deleteLikeCard(cardId, likeElement, likeButton){
+function deleteLikeCard(cardId, card){
 	api.deleteLikeCard(cardId)
 	.then(result=> {
-		likeElement.textContent = result.likes.length;
-		likeButton.classList.toggle('element__like-button_active');
+		card.deleteLike(result.likes.length)
 	})
 	.catch((err)=> console.log(`Ошибка ${err}`))
 }
@@ -45,8 +43,7 @@ function openPopupDelete(cardId, card){
 		evt.submitter.textContent = 'Удаляется...';
 		api.deleteMyCard(cardId)
 		.then(()=>{
-		card.remove();
-		card = null;
+		card.deleteCard();
 		popupDeleteCard.close();
 		})
 		.catch((err)=> console.log(`Ошибка ${err}`))
@@ -57,8 +54,8 @@ const popupDeleteCard = new PopupWithConfirm('.popup_type_deletCard')
 popupDeleteCard.setEventListeners();
 
 function createCard(item) {
-	const cardfromCreate = new Card(item, '.cardTemplate', openClickedPicture, openPopupDelete, putLikeCard, deleteLikeCard, userData.getUserID());
-	const cardElement = cardfromCreate.createNewCard();
+	const card = new Card(item, '.cardTemplate', openClickedPicture, openPopupDelete, putLikeCard, deleteLikeCard, userData.getUserID());
+	const cardElement = card.createNewCard();
 	return cardElement
 }
 
@@ -83,7 +80,6 @@ const formCreateCardSubmit = new PopupWithForm(
 		return api.addNewCard(newData)
 		.then(res=> {
 			cardList.renderer([res]);
-			formCreateCardSubmit.close();
 		})
 		.catch((err)=> console.log(`Ошибка ${err}`))
 		//.finally(()=>evt.submitter.textContent = 'Создать');
@@ -123,7 +119,6 @@ const formEditProfileSubmit = new PopupWithForm(
 		return api.editProfileData(newData.name, newData.profession)
 		.then(res=> {
 			userData.setUserInfo(res);
-			formEditProfileSubmit.close();
 		})
 		.catch((err)=> console.log(`Ошибка ${err}`))
 		//.finally(()=>evt.submitter.textContent = 'Сохранить');
@@ -142,7 +137,7 @@ const formUpdateAvatarSubmit = new PopupWithForm(
 		return api.updateAvatar(avatarLink.link)
 		.then(res=> {
 			userData.setUserInfo(res);
-			formUpdateAvatarSubmit.close();
+			//formUpdateAvatarSubmit.close();
 		})
 		.catch((err)=> console.log(`Ошибка ${err}`))
 		//.finally(()=>evt.submitter.textContent = 'Сохранить');

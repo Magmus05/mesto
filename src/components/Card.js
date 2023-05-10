@@ -9,7 +9,7 @@ export class Card {
     this.idOwner = idOwner;
     this._cardOwner_id = item.owner._id;
     this._templateSelector = templateSelector;
-    this.openPic = openClickedPicture;
+    this._openPic = openClickedPicture;
     this._popupDelete = popupDelete;
     this._putLikeCard = putLikeCard;
     this._deleteLikeCard = deleteLikeCard;
@@ -28,15 +28,15 @@ export class Card {
           this._likeButton.classList.add('element__like-button_active')
         }
       })
-      this.likeElement = this._newCard.querySelector('.element__like-count');
-      this.likeElement.textContent = this._likeCount;
+      this._likeElement = this._newCard.querySelector('.element__like-count');
+      this._likeElement.textContent = this._likeCount;
 
       if(this._cardOwner_id === this.idOwner ) {
         this._deleteButton = this._newCard.querySelector('.element__delete');
         this._deleteButton.classList.remove('element__delete_disabled')
 
         this._deleteButton.addEventListener('click', ()=> {
-          this._popupDelete(this.item._id, this._newCard)
+          this._popupDelete(this.item._id, this)
         });
       }
       this._cardImage.setAttribute('src', this._link);
@@ -47,16 +47,25 @@ export class Card {
       return this._newCard;
     }
     _handleLikeClick(){
-      if (this._likeButton.classList.contains('element__like-button_active')){this._deleteLikeCard(this.item._id, this.likeElement, this._likeButton)} 
-      else{this._putLikeCard(this.item._id, this.likeElement, this._likeButton)}
+      if (this._likeButton.classList.contains('element__like-button_active')){this._deleteLikeCard(this.item._id, this)} 
+      else{this._putLikeCard(this.item._id, this)}
     }
-    // _handleDeleteClick(){
-    //   this._newCard.remove();
-    //   this._newCard = null;
-    // }
+    deleteCard(){
+      this._newCard.remove();
+      this._newCard = null;
+    }
     _setEventListener(){
       this._likeButton.addEventListener('click', ()=> this._handleLikeClick());
-      this._cardImage.addEventListener('click', () =>{this.openPic(this._name, this._link)});
+      this._cardImage.addEventListener('click', () =>{this._openPic(this._name, this._link)});
+    }
+
+    putLike(resultLikesLength){
+      this._likeElement.textContent = resultLikesLength;
+      this._likeButton.classList.toggle('element__like-button_active');
+    }
+    deleteLike(resultLikesLength){
+      this._likeElement.textContent = resultLikesLength;
+      this._likeButton.classList.toggle('element__like-button_active');
     }
 
 }
